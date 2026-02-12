@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Phone Hub – Valentine’s Special</title>
+<style>
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+  overflow-x:hidden;
+}
+header{
+  padding:80px 20px;
+  text-align:center;
+  color:white;
+  background: radial-gradient(circle at top, #ff6f91, #ff95a2);
+}
+header h1{font-size:50px;margin-bottom:10px;}
+header p{font-size:20px;opacity:0.9;}
+.grid{
+  max-width:1300px;
+  margin:auto;
+  padding:60px 40px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
+}
+.card{
+  background:white;
+  border-radius:20px;
+  padding:20px;
+  text-align:center;
+  box-shadow:0 15px 30px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover{
+  transform: translateY(-10px) rotate(0.5deg);
+  box-shadow:0 30px 60px rgba(0,0,0,0.15);
+}
+.card img{
+  width:100%;
+  height:200px;
+  object-fit:contain;
+  transition: transform 0.3s ease;
+}
+.card:hover img{
+  transform: rotate(-2deg) scale(1.06);
+}
+.card h3{margin:15px 0 5px;font-size:18px;}
+.card p{margin:0;color:#555;}
+.original-price{
+  text-decoration:line-through;
+  color:#999;
+  margin-right:5px;
+}
+.discount-price{
+  color:#ff1a75;
+  font-weight:bold;
+}
+.btn{
+  display:inline-block;
+  margin:5px;
+  padding:10px 20px;
+  border-radius:999px;
+  background:#ff4d6d;
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+}
+.btn:hover{background:#d43b5d;}
+footer{
+  text-align:center;
+  padding:30px;
+  color:#666;
+  position:relative;
+  z-index:2;
+}
+/* Hearts Animation */
+.heart{
+  position:absolute;
+  width:20px;
+  height:20px;
+  background:red;
+  clip-path: polygon(50% 0%,61% 13%,75% 13%,84% 23%,84% 36%,75% 47%,50% 70%,25% 47%,16% 36%,16% 23%,25% 13%,39% 13%);
+  animation: floatHearts 5s linear infinite;
+  opacity:0.7;
+}
+@keyframes floatHearts{
+  0%{transform:translateY(0);}
+  100%{transform:translateY(100vh);}
+}
+/* Arrows */
+.arrow{
+  position:absolute;
+  width:40px;
+  height:4px;
+  background:red;
+  clip-path: polygon(0 0,100% 50%,0 100%);
+  animation: shootArrow linear infinite;
+}
+@keyframes shootArrow{
+  0%{transform:translate(-50px,200px);}
+  100%{transform:translate(120vw,300px);}
+}
+</style>
+</head>
+<body>
+<header>
+<h1>Phone Hub – Valentine’s Special</h1>
+<p>Discounted Smartphones – Only Phones!</p>
+</header>
+
+<section class="grid" id="productGrid"></section>
+
+<footer>
+📞 +501 643-790 • Belize
+</footer>
+
+<script>
+const phones = [
+  {key:"phone1", name:"Samsung Galaxy Z Fold 6", original:"$1,799", discount:"$1,499", img:"https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-z-fold6.jpg"},
+  {key:"phone2", name:"Google Pixel 8 Pro", original:"$999", discount:"$899", img:"https://fdn2.gsmarena.com/vv/bigpic/google-pixel-8-pro.jpg"},
+  {key:"phone3", name:"Redmi Note 13", original:"$349", discount:"$299", img:"https://fdn2.gsmarena.com/vv/bigpic/xiaomi-redmi-note-13.jpg"},
+  {key:"phone4", name:"OnePlus 12", original:"$899", discount:"$799", img:"https://fdn2.gsmarena.com/vv/bigpic/oneplus-12.jpg"},
+  {key:"iphone14pro", name:"iPhone 14 Pro", original:"$999", discount:"$849", img:"https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-14-pro.jpg"},
+  {key:"iphone13", name:"iPhone 13", original:"$650", discount:"$550", img:"https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-13.jpg"},
+  {key:"iphoneSE", name:"iPhone SE (2022)", original:"$350", discount:"$299", img:"https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-se-2022.jpg"},
+  {key:"galaxya54", name:"Samsung Galaxy A54", original:"$450", discount:"$399", img:"https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-a54.jpg"}
+];
+
+const grid=document.getElementById("productGrid");
+phones.forEach(item=>{
+  const card=document.createElement("div");
+  card.className="card";
+  card.innerHTML=`
+    <img src="${item.img}">
+    <h3>${item.name}</h3>
+    <p><span class="original-price">${item.original}</span> <span class="discount-price">${item.discount}</span></p>
+    <a class="btn" href="product.html?item=${item.key}">View Details</a>
+    <a class="btn" href="checkout.html?item=${item.key}">Buy</a>
+  `;
+  grid.appendChild(card);
+});
+
+// Hearts
+for(let i=0;i<30;i++){
+  let heart=document.createElement("div");
+  heart.className="heart";
+  heart.style.left=Math.random()*100+"%";
+  heart.style.top=-Math.random()*100+"vh";
+  heart.style.animationDuration=(3+Math.random()*5)+"s";
+  heart.style.width=(15+Math.random()*15)+"px";
+  heart.style.height=heart.style.width;
+  heart.style.opacity=Math.random()*0.7+0.3;
+  document.body.appendChild(heart);
+}
+
+// Arrows
+for(let i=0;i<5;i++){
+  let arrow=document.createElement("div");
+  arrow.className="arrow";
+  arrow.style.top=(100+Math.random()*400)+"px";
+  arrow.style.animationDuration=(3+Math.random()*4)+"s";
+  arrow.style.left=-50+"px";
+  document.body.appendChild(arrow);
+}
+</script>
+</body>
+</html>

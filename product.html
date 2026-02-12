@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Phone Details – Phone Hub</title>
+<style>
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+  color:#000;
+}
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:80px 20px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
+  align-items:center;
+}
+img{
+  width:100%;
+  object-fit:contain;
+  transition: transform 0.4s ease;
+}
+img:hover{transform:rotate(-2deg) scale(1.05);}
+h1{font-size:40px;margin-bottom:10px;}
+.price{font-size:22px;margin-bottom:20px;}
+ul{padding-left:20px;color:#555;}
+.btn{
+  display:inline-block;
+  margin-top:30px;
+  padding:12px 25px;
+  border-radius:999px;
+  background:#ff4d6d;
+  color:white;
+  text-decoration:none;
+}
+.btn:hover{background:#d43b5d;}
+</style>
+</head>
+<body>
+<div class="container">
+  <img id="phoneImg" src="">
+  <div>
+    <h1 id="phoneName"></h1>
+    <p class="price"> <span id="originalPrice"></span> <span id="discountPrice"></span></p>
+    <ul id="phoneSpecs"></ul>
+    <p>📞 +501 643-790<br>Belize</p>
+    <a class="btn" id="backBtn" href="index.html">← Back to Store</a>
+    <a class="btn" id="buyBtn" href="">Buy Now</a>
+  </div>
+</div>
+
+<script>
+const phones = {
+  "phone1": {name:"Samsung Galaxy Z Fold 6", original:"$1,799", discount:"$1,499", img:"https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-z-fold6.jpg", specs:["512GB Storage","12GB RAM","50MP Camera","5G Support","7.6\" Foldable Display"]},
+  "phone2": {name:"Google Pixel 8 Pro", original:"$999", discount:"$899", img:"https://fdn2.gsmarena.com/vv/bigpic/google-pixel-8-pro.jpg", specs:["256GB Storage","12GB RAM","50MP Camera","5G Support","6.7\" AMOLED Display"]},
+  "phone3": {name:"Redmi Note 13", original:"$349", discount:"$299", img:"https://fdn2.gsmarena.com/vv/bigpic/xiaomi-redmi-note-13.jpg", specs:["128GB Storage","6GB RAM","50MP Camera","5G Support","6.6\" AMOLED Display"]},
+  "phone4": {name:"OnePlus 12", original:"$899", discount:"$799", img:"https://fdn2.gsmarena.com/vv/bigpic/oneplus-12.jpg", specs:["256GB Storage","12GB RAM","50MP Camera","5G Support","6.7\" AMOLED Display"]},
+  "iphone14pro": {name:"iPhone 14 Pro", original:"$999", discount:"$849", img:"https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-14-pro.jpg", specs:["256GB Storage","6GB RAM","48MP Camera","5G Support","6.1\" Super Retina XDR"]},
+  "iphone13": {name:"iPhone 13", original:"$650", discount:"$550", img:"https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-13.jpg", specs:["128GB Storage","4GB RAM","12MP Camera","5G Support","6.1\" Super Retina XDR"]},
+  "iphoneSE": {name:"iPhone SE (2022)", original:"$350", discount:"$299", img:"https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-se-2022.jpg", specs:["64GB Storage","3GB RAM","12MP Camera","5G Support","4.7\" Retina Display"]},
+  "galaxya54": {name:"Samsung Galaxy A54", original:"$450", discount:"$399", img:"https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-a54.jpg", specs:["128GB Storage","6GB RAM","50MP Camera","5G Support","6.4\" AMOLED Display"]}
+};
+
+const params = new URLSearchParams(window.location.search);
+const item = params.get("item");
+if(phones[item]){
+  const p = phones[item];
+  document.getElementById("phoneImg").src = p.img;
+  document.getElementById("phoneName").innerText = p.name;
+  document.getElementById("originalPrice").innerText = p.original;
+  document.getElementById("discountPrice").innerText = p.discount;
+  const ul = document.getElementById("phoneSpecs");
+  p.specs.forEach(spec=>{
+    const li=document.createElement("li");
+    li.innerText=spec;
+    ul.appendChild(li);
+  });
+  document.getElementById("buyBtn").href = "checkout.html?item="+item;
+}else{
+  alert("Phone not found!");
+  window.location="index.html";
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Checkout – Phone Hub</title>
+<style>
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.container {
+  max-width: 400px;
+  width: 100%;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  text-align: center;
+}
+h1 { color: #ff1a75; margin-bottom: 20px; }
+p { margin: 10px 0; color: #555; }
+input {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 25px;
+  border-radius: 999px;
+  background: #ff4d6d;
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+button:hover { background: #d43b5d; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Checkout</h1>
+  <p>Enter your payment details</p>
+
+  <form onsubmit="alert('Purchase Completed! Thank you!'); return false;">
+    <input type="text" placeholder="Full Name" required><br>
+    <input type="text" placeholder="Card Number" required><br>
+    <input type="text" placeholder="Expiry (MM/YY)" required style="width:43%; padding:10px; margin:10px 5px 10px 0;">
+    <input type="text" placeholder="CVV" required style="width:43%; padding:10px; margin:10px 0;"><br>
+    <button type="submit">Confirm Purchase</button>
+  </form>
+
+  <a href="index.html" style="display:inline-block; margin-top:15px; color:#ff4d6d; text-decoration:none;">← Back to Store</a>
+</div>
+
+</body>
+</html>
